@@ -3,103 +3,17 @@
 	<head>
 		<style type="text/css">
 			#dolpan {width:600px; height:300px;}
-			#dolpan #dolpan_toolbar {width:100%; height:50px; border:solid 1px #d6d6d6;}
-			#dolpan_editor {width:100%; border:solid 1px #d6d6d6;}
-
-			#dolpan .dolpan_toolbar ul {margin:0; padding:0;}
-			#dolpan .dolpan_toolbar li {width:30px; height:30px; margin:0; padding:0; list-style-type: none; float:left;}
-			#dolpan .dolpan_toolbar li a {display: block; width:100%; height:60%; margin: auto; text-decoration: none; text-align: center; padding:20% 0;}
-			#dolpan .dolpan_toolbar li a:hover {border:solid 1px silver;}
 		</style>
 		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../lib/dolpan.js"></script>
 		<script type="text/javascript">
-			(function(window) {
-				var width = 300;
-				var height = 600;
-
-				var dolpan = function()
-				{
-					return dolpan.fn.init(width, height);
-				}
-
-				dolpan.fn = dolpan.prototype = {
-					width:width,
-					height:height,
-					content_target:"dolpan",
-					content: "",
-					content_width:0,
-					content_height:0,
-
-
-					init:function(width, height)
-					{
-						$("#dolpan_editor").height(height);
-						this.content = $("#"+this.content_target + " #dolpan_editor");
-
-						this.content_width = this.content.width();
-						this.content_height = this.content.height();
-
-						return this;
-					},
-
-					create_toolbar:function()
-					{
-						alert("toolbar");
-					},
-
-					get_html:function()
-					{
-						alert(this.content_width);
-						//alert(this.content.html());
-					},
-
-					_create_content_layer:function(id)
-					{
-						var layer = $('<div id="'+id+'" class="dolpan_layer"></div>');
-
-						return layer;
-					},
-
-					show_html:function()
-					{
-						var l = this._create_content_layer("dolpan_htmlsrc");
-
-					}
-				}
-
-				window.dolpan = dolpan;
-
-
-
-			})(window);
-
 			window.onload = function(){
-				var d = new dolpan();
-
-				d.get_html();
+				var d = new dolpan("dolpan");
 			}
 		</script>
 	</head>
 	<body>
-		<div id="dolpan">
-			<div id="dolpan_toolbar">
-				<ul class="dolpan_toolbar" id="dolpan_toolbar_set1">
-					<li><a href="#bold" title="진하게">B</a></li>
-					<li><a href="#italic" title="이탤릭">I</a></li>
-					<li><a href="#underline" title="밑줄">U</a></li>
-				</ul>
-			</div>
-			<div id="dolpan_editor" contenteditable="true">
-				<h1>Hello,World</h1>
-			</div>
-			<div id="dolpan_tab">
-				<ul>
-					<li><a href="#EDIT">EDIT</a></li>
-					<li><a href="#HTML">HTML</a></li>
-					<li><a href="#PREVIEW">PREVIEW</a></li>
-				</ul>
-			</div>
-		</div>
+		<div id="dolpan"></div>
 	</body>
 </html>
 

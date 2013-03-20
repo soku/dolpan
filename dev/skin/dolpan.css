@@ -1,0 +1,33 @@
+#dolpan_toolbar {width:100%; height:50px; border:solid 1px #d6d6d6;}
+#dolpan_editor {width:100%; border:solid 1px #d6d6d6;}
+
+#dolpan_toolbar ul {margin:0; padding:0;}
+#dolpan_toolbar li {width:30px; height:30px; margin:0; padding:0; list-style-type: none; float:left;}
+#dolpan_toolbar li a {display: block; width:100%; height:60%; margin: auto; text-decoration: none; text-align: center; padding:20% 0;}
+#dolpan_toolbar li a:hover {border:solid 1px silver;}
+#dolpan_tab ul {list-style: none; margin:0; padding:0; float:right; margin-right: 10px; margin-top:20px;}
+#dolpan_tab li {list-style: none; margin:0; padding:0; width:40px; float:left; font-size:8pt; text-align: center;}
+
+
+#dolpan_toolbar_set1 li {width:22px; height:22px;background-image:url(../lib/img/toolbar.gif);}
+#dolpan_toolbar_set1 li a {display: block; width:100%; height:22px; text-indent: -9999px; margin:0; padding:0;}
+#dolpan_toolbar_set1 .bold {background-position: 0px 0px;}
+#dolpan_toolbar_set1 .table {background-position: -22px 0px;}
+#dolpan_toolbar_set1 .font {background-position: -44px 0px;}
+#dolpan_toolbar_set1 .image {background-position: -66px 0px;}
+#dolpan_toolbar_set1 .sub {background-position: -88px 0px;}
+#dolpan_toolbar_set1 .super {background-position: -110px 0px;}
+#dolpan_toolbar_set1 .italic {background-position: -132px 0px;}
+#dolpan_toolbar_set1 .unordered {background-position: -154px 0px;}
+#dolpan_toolbar_set1 .strike {background-position: -176px 0px;}
+#dolpan_toolbar_set1 .clear_style {background-position: -198px 0px;}
+#dolpan_toolbar_set1 .style {background-position: -220px 0px;}
+#dolpan_toolbar_set1 .ordered {background-position: -242px 0px;}
+#dolpan_toolbar_set1 .template {background-position: -264px 0px;}
+#dolpan_toolbar_set1 .show_guide {background-position: -286px 0px;}
+#dolpan_toolbar_set1 .font_size {background-position: -308px 0px;}
+#dolpan_toolbar_set1 .new {background-position: -330px 0px;}
+#dolpan_toolbar_set1 .object {background-position: -352px 0px;}
+#dolpan_toolbar_set1 .underline {background-position: -374px 0px;}
+#dolpan_toolbar_set1 .anchor {background-position: -396px 0px;}
+#dolpan_toolbar_set1 .symbol {background-position: -418px 0px;}
