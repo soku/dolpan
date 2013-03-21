@@ -6,6 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="./dolpan.css">
 		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../lib/dolpan_editor.js"></script>
+		<script type="text/javascript">
+			var de;
+			window.onload = function(){
+				de = new dolpan_editor();	
+			}
+			
+		</script>
 	</head>
 	<body>
 		<div id="dolpan_toolbar">
@@ -13,16 +20,16 @@
 				<li class="new"><a href="#new" title="새페이지">I</a></li>												
 				<li class="font"><a href="#font" title="글꼴선택" >B</a></li>
 				<li class="font_size"><a href="#font_size" title="글꼴크기">I</a></li>												
-				<li class="bold"><a href="#bold" title="진하게" >B</a></li>
-				<li class="underline"><a href="#underline" title="밑줄" >U</a></li>
-				<li class="italic"><a href="#italic" title="이탤릭">I</a></li>
-				<li class="strike"><a href="#strike" title="취소선">I</a></li>
+				<li class="bold"><a href="#bold" title="진하게" class="command">B</a></li>
+				<li class="underline"><a href="#underline" title="밑줄" class="command">U</a></li>
+				<li class="italic"><a href="#italic" title="이탤릭" class="command">I</a></li>
+				<li class="strike"><a href="#strikethrough" title="취소선" class="command">I</a></li>
 				<li class="table"><a href="#table" title="표삽입" >B</a></li>
 				<li class="image"><a href="#image" title="이미지삽입" >B</a></li>
-				<li class="sub"><a href="#sub" title="아래첨자" >B</a></li>
-				<li class="super"><a href="#super" title="위첨자" >B</a></li>
-				<li class="unodered"><a href="#unodered" title="점목록">I</a></li>
-				<li class="ordered"><a href="#ordered" title="숫자목록">I</a></li>
+				<li class="sub"><a href="#sub" title="아래첨자" class="command" >B</a></li>
+				<li class="super"><a href="#super" title="위첨자" class="command" >B</a></li>
+				<li class="unordered"><a href="#insertunorderedlist" title="점목록" class="command">I</a></li>
+				<li class="ordered"><a href="#insertorderedlist" title="숫자목록" class="command">I</a></li>
 				<li class="clear_style"><a href="#clear_style" title="서식제거">I</a></li>				
 				<li class="style"><a href="#style" title="서식">I</a></li>				
 				<li class="template"><a href="#template" title="템플릿">I</a></li>								
@@ -30,16 +37,17 @@
 				<li class="object"><a href="#object" title="동영상">I</a></li>												
 				<li class="anchor"><a href="#anchor" title="링크">I</a></li>
 				<li class="symbol"><a href="#symbol" title="기호">I</a></li>
-				
 			</ul>
 		</div>
 		<div id="dolpan_editor">
 			<iframe id="dolpan_frame" src="./dolpan_input.html" frameborder="0"></iframe>
+			<textarea id="dolpan_htmlsrc"></textarea>		
 		</div>
 		<div id="dolpan_tab">
+
 			<ul>
 				<li><a href="#EDIT">EDIT</a></li>
-				<li><a href="#HTML">HTML</a></li>
+				<li><a href="#HTML" class="show_html">HTML</a></li>
 				<li><a href="#PREVIEW">PREVIEW</a></li>
 			</ul>
 		</div>

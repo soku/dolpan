@@ -31,7 +31,6 @@
 			
 			$("#"+this.content_target).height(height);
 			$("#"+this.content_target).width(width);
-			//this.content = $("#"+this.content_target + " #dolpan_editor");
 
 			this.content_width = width;
 			this.content_height = height;
@@ -47,34 +46,7 @@
 			$("#"+this.content_target).append(iframe);
 		},
 
-		create_toolbar:function()
-		{
-			alert("toolbar");
-		},
-
-		get_html:function()
-		{
-			alert(this.content_width);
-			//alert(this.content.html());
-		},
-
-		_create_content_layer:function(id)
-		{
-			var layer = $('<div id="'+id+'" class="dolpan_layer"></div>');
-
-			return layer;
-		},
-
-		show_html:function()
-		{
-			var l = this._create_content_layer("dolpan_htmlsrc");
-
-		},
-
-		execCommand:function()
-		{
-			document.execCommand("italic", false, null);
-		}
+		
 	}
 
 	window.dolpan = dolpan;

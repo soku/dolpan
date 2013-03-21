@@ -1,13 +1,17 @@
+body {margin:0; padding:0;}
 #dolpan_toolbar {width:100%; height:50px; border:solid 1px #d6d6d6;}
 #dolpan_editor {width:100%; border:solid 1px #d6d6d6;}
+#dolpan_frame {width:100%;}
 
 #dolpan_toolbar ul {margin:0; padding:0;}
 #dolpan_toolbar li {width:30px; height:30px; margin:0; padding:0; list-style-type: none; float:left;}
 #dolpan_toolbar li a {display: block; width:100%; height:60%; margin: auto; text-decoration: none; text-align: center; padding:20% 0;}
-#dolpan_toolbar li a:hover {border:solid 1px silver;}
+#dolpan_toolbar li a:hover, #dolpan_toolbar li a.selected {border:solid 1px silver;}
+#dolpan_tab {}
 #dolpan_tab ul {list-style: none; margin:0; padding:0; float:right; margin-right: 10px; margin-top:20px;}
 #dolpan_tab li {list-style: none; margin:0; padding:0; width:40px; float:left; font-size:8pt; text-align: center;}
 
+#dolpan_htmlsrc {display: none; width:100%; height:100%;}
 
 #dolpan_toolbar_set1 li {width:22px; height:22px;background-image:url(../lib/img/toolbar.gif);}
 #dolpan_toolbar_set1 li a {display: block; width:100%; height:22px; text-indent: -9999px; margin:0; padding:0;}
