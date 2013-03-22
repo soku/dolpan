@@ -5,6 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="./dolpan.css">
 		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../lib/dolpan_editor.config.js"></script>
 		<script type="text/javascript" src="../lib/dolpan_editor.js"></script>
 		<script type="text/javascript">
 			var de;
@@ -17,26 +18,39 @@
 	<body>
 		<div id="dolpan_toolbar">
 			<ul class="dolpan_toolbar" id="dolpan_toolbar_set1">
-				<li class="new"><a href="#new" title="새페이지">I</a></li>												
-				<li class="font"><a href="#font" title="글꼴선택" >B</a></li>
-				<li class="font_size"><a href="#font_size" title="글꼴크기">I</a></li>												
-				<li class="bold"><a href="#bold" title="진하게" class="command">B</a></li>
-				<li class="underline"><a href="#underline" title="밑줄" class="command">U</a></li>
-				<li class="italic"><a href="#italic" title="이탤릭" class="command">I</a></li>
-				<li class="strike"><a href="#strikethrough" title="취소선" class="command">I</a></li>
-				<li class="table"><a href="#table" title="표삽입" >B</a></li>
-				<li class="image"><a href="#image" title="이미지삽입" >B</a></li>
-				<li class="sub"><a href="#sub" title="아래첨자" class="command" >B</a></li>
-				<li class="super"><a href="#super" title="위첨자" class="command" >B</a></li>
-				<li class="unordered"><a href="#insertunorderedlist" title="점목록" class="command">I</a></li>
-				<li class="ordered"><a href="#insertorderedlist" title="숫자목록" class="command">I</a></li>
-				<li class="clear_style"><a href="#clear_style" title="서식제거">I</a></li>				
-				<li class="style"><a href="#style" title="서식">I</a></li>				
-				<li class="template"><a href="#template" title="템플릿">I</a></li>								
-				<li class="show_guide"><a href="#show_guide" title="가이드라인표시">I</a></li>												
-				<li class="object"><a href="#object" title="동영상">I</a></li>												
-				<li class="anchor"><a href="#anchor" title="링크">I</a></li>
-				<li class="symbol"><a href="#symbol" title="기호">I</a></li>
+				<li class="new"><a href="#new" title="새페이지">NEW PAGE</a></li>												
+				<li class="font fontselect">
+					<a href="#FontName" title="글꼴선택" >FONT SELECT</a>
+					<select name="sltFontSelect" id="sltFontSelect">
+						<option value="gulimche">굴림체</option>
+						<option value="batangche">바탕체</option>						
+						<option value="dotumche">돋움체</option>						
+						<option value="gungsuh">궁서체</option>
+						<option value="arial">Arial</option>
+						<option value="tahoma">Tahoma</option>
+						<option value="verdana">Verdana</option>						
+					</select>
+				</li>
+				<li class="font_size">
+					<a href="#font_size" title="글꼴크기">FONT SIZE</a>
+				</li>												
+				<li class="bold"><a href="#bold" title="진하게" class="command">BOLD</a></li>
+				<li class="underline"><a href="#underline" title="밑줄" class="command">UNDERLINE</a></li>
+				<li class="italic"><a href="#italic" title="이탤릭" class="command">ITALIC</a></li>
+				<li class="strikethrough"><a href="#strikethrough" title="취소선" class="command">STRIKE</a></li>
+				<li class="table"><a href="#table" title="표삽입" >INSERT TABLE</a></li>
+				<li class="image"><a href="#image" title="이미지삽입" >INSERT IMAGE</a></li>
+				<li class="sub"><a href="#sub" title="아래첨자" class="command" >SUB LETTER</a></li>
+				<li class="super"><a href="#super" title="위첨자" class="command" >SUPER LETTER</a></li>
+				<li class="unordered"><a href="#insertunorderedlist" title="점목록" class="command">INSERT UNORDERED LIST</a></li>
+				<li class="ordered"><a href="#insertorderedlist" title="숫자목록" class="command">INSERT ORDERED LIST</a></li>
+				<li class="clear_style"><a href="#clear_style" title="서식제거">CLEAR STYLE</a></li>				
+				<li class="style"><a href="#style" title="서식">STYLE</a></li>				
+				<li class="template"><a href="#template" title="템플릿">SELECT TEMPLATE</a></li>								
+				<li class="show_guide"><a href="#show_guide" title="가이드라인표시">SHOW GUIDLINE</a></li>												
+				<li class="object"><a href="#object" title="동영상">INSERT OBJECT</a></li>												
+				<li class="anchor"><a href="#anchor" title="링크">INSERT HYPERLINK</a></li>
+				<li class="symbol"><a href="#symbol" title="기호">INSERT SYMBOL</a></li>
 			</ul>
 		</div>
 		<div id="dolpan_editor">
