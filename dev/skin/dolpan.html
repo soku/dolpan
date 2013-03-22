@@ -18,10 +18,10 @@
 	<body>
 		<div id="dolpan_toolbar">
 			<ul class="dolpan_toolbar" id="dolpan_toolbar_set1">
-				<li class="new"><a href="#new" title="새페이지">NEW PAGE</a></li>												
+				<li class="new"><a href="#new" class="command" event="custom" title="새페이지">NEW PAGE</a></li>												
 				<li class="font fontselect">
 					<a href="#FontName" title="글꼴선택" >FONT SELECT</a>
-					<select name="sltFontSelect" id="sltFontSelect">
+					<select name="sltFontSelect" id="sltFontSelect" class="FontName">
 						<option value="gulimche">굴림체</option>
 						<option value="batangche">바탕체</option>						
 						<option value="dotumche">돋움체</option>						
@@ -42,8 +42,8 @@
 				<li class="image"><a href="#image" title="이미지삽입" >INSERT IMAGE</a></li>
 				<li class="sub"><a href="#sub" title="아래첨자" class="command" >SUB LETTER</a></li>
 				<li class="super"><a href="#super" title="위첨자" class="command" >SUPER LETTER</a></li>
-				<li class="unordered"><a href="#insertunorderedlist" title="점목록" class="command">INSERT UNORDERED LIST</a></li>
-				<li class="ordered"><a href="#insertorderedlist" title="숫자목록" class="command">INSERT ORDERED LIST</a></li>
+				<li class="insertunorderedlist"><a href="#insertunorderedlist" title="점목록" class="command">INSERT UNORDERED LIST</a></li>
+				<li class="insertorderedlist"><a href="#insertorderedlist" title="숫자목록" class="command">INSERT ORDERED LIST</a></li>
 				<li class="clear_style"><a href="#clear_style" title="서식제거">CLEAR STYLE</a></li>				
 				<li class="style"><a href="#style" title="서식">STYLE</a></li>				
 				<li class="template"><a href="#template" title="템플릿">SELECT TEMPLATE</a></li>								

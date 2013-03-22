@@ -20,13 +20,11 @@
 		editor:"#dolpan_frame",
 		html:"#dolpan_htmlsrc",
 		body : null,
-		commandset:null,
+		commandset:[],
 
 
 		init:function()
 		{
-
-
 			$("body").width($("body").width()-4);
 			var oIframe = document.getElementById("dolpan_frame");
 			var oDoc = oIframe.contentWindow || oIframe.contentDocument;
@@ -46,30 +44,61 @@
 				this.insertHtml("");
 
 			this.attach_events();
-
 			this.body.focus();
-
-
-			
 
 			return this;
 		},
+		
+		execCommand : function(command) {
+			this.execute = function() {
+				dolpan_editor.fn.customCommand.hasOwnProperty(command) ? dolpan_editor.fn.customCommand[command](): dolpan_editor.fn.content_area.execCommand(command, false, null);
+			};
+			this.updateUI = function() {
+				var active = dolpan_editor.fn.content_area.queryCommandState(command);
+				active ? $('#dolpan_toolbar .'+command +' a').addClass("selected"):$('#dolpan_toolbar .'+command +' a').removeClass("selected");
+			};
+		},
 
+		execValueCommand: function(command) {
+			this.execute = function(value) {
+				dolpan_editor.fn.customCommand.hasOwnProperty(command) ? dolpan_editor.fn.customCommand[command](): dolpan_editor.fn.content_area.execCommand(command, false, value);
+			};
+			this.updateUI = function() {
+				var active = dolpan_editor.fn.content_area.queryCommandValue(command);
+				 $('#dolpan_toolbar .'+command).val(active);
+				//active ? $('#dolpan_toolbar .'+command +' a').addClass("selected"):$('#dolpan_toolbar .'+command +' a').removeClass("selected");
+			};
+		},
 		create_toolbar:function()
 		{
 			var _this = this;
-			$("#dolpan_toolbar a.command").each(function(){
-				var command = $(this).attr("href").replace("#", "");
+			$("#dolpan_toolbar a").each(function(){
+				var scmd = $(this).attr("href").replace("#", "");
+				var value ="";
+				var command;
+
+				if($(this).hasClass("command"))
+					command = new _this.execCommand(scmd);
+				else
+					command = new _this.execValueCommand(scmd,value);
 
 				$(this).click(function(){
-					_this.execCommand(command);	
-				});
-				
+					command.execute();
+					this.unselectable = "on"; // IE, prevent focus
+					_this.body.focus();
 
+					return false;
+				});
+
+				_this.commandset.push(command);
 			})
 
+			command = new _this.execValueCommand("FontName");
+			_this.commandset.push(command);
 			$("#sltFontSelect").change(function(){
-				_this.execCommand(command, arg)
+				command.execute($(this).val())
+				this.unselectable = "on"; // IE, prevent focus
+				_this.body.focus();
 			})
 		},
 
@@ -81,20 +110,18 @@
 			if(!this.show_toolbar)
 				return false;
 
-			var commands = this.update_commandset.split(",");
-			for(var i=0; i<commands.length; i++)
-			{
-				var command = commands[i];
-				var active = this.content_area.queryCommandState(command);
-
-				active ? $('#dolpan_toolbar .'+command +' a').addClass("selected"):$('#dolpan_toolbar .'+command +' a').removeClass("selected");
-			}
-
+			$.map(this.commandset, function(cmd){
+				cmd.updateUI();
+			})
 		},
 
 		attach_events:function()
 		{
 			this.body.bind('click',function(){
+				dolpan_editor.fn.update_toolbar();
+			});
+
+			this.body.bind('focus',function(){
 				dolpan_editor.fn.update_toolbar();
 			});
 		},
@@ -144,7 +171,7 @@
 
 				$(this.editor).hide();
 				$(this.html).show();
-				$(this.html).val($(this.editor).contents().find('body').html());
+				$(this.html).val(this.body.html());
 				$(this.html).attr("readonly", "readonly");
 				$(this.html).height(eHeight);
 			}
@@ -159,23 +186,7 @@
 			this.body.focus();
 		},
 		*/
-		execCommand : function(command) {
-			this.execute = function() {
-				editDoc.execCommand(command, false, null); 
-			};
-			this.queryState = function() {
-				return editDoc.queryCommandState(command);
-			};
-		},
-
-		execValueCommand: function(command) {
-			this.execute = function(value) {
-				editDoc.execCommand(command, false, value); 
-			};
-			this.queryValue = function() {
-				return editDoc.queryCommandValue(command);
-			};
-		},
+		
 
 		insertHtml:function(html)
 		{
@@ -188,6 +199,7 @@
 				if(confirm ("작성된 내용을 삭제됩니다.\n 정말 새로 작성하시겠습니까?"))
 					$(dolpan_editor.fn.editor).contents().find("body").html("<p><br/><p>");
 			}, 
+
 
 			"table" : function(){
 				;

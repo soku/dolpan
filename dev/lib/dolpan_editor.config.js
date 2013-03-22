@@ -1,24 +1,24 @@
 var dolpan_config = {
 	command_set : [
-		{elmt:"font", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"font_size", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"bold", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"underline", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"italic", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"strikethrough", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"table", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"image", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"sub", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"super", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"unordered", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"ordered", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"clear_style", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"style", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"template", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"show_guide", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"object", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"anchor", controller:"ValueSelectorController", command : "FontName"},
-		{elmt:"symbol", controller:"ValueSelectorController", command : "FontName"}
+		{elmt:"font", type:"Value", command : "FontName"},
+		{elmt:"font_size", type:"Value", command : "FontName"},
+		{elmt:"bold", type:"Toggle", command : "FontName"},
+		{elmt:"underline", type:"Toggle", command : "FontName"},
+		{elmt:"italic", type:"Toggle", command : "FontName"},
+		{elmt:"strikethrough", type:"Toggle", command : "FontName"},
+		{elmt:"table", type:"Toggle", command : "FontName"},
+		{elmt:"image", type:"Value", command : "FontName"},
+		{elmt:"sub", type:"Toggle", command : "FontName"},
+		{elmt:"super", type:"Toggle", command : "FontName"},
+		{elmt:"unordered", type:"Value", command : "FontName"},
+		{elmt:"ordered", type:"Value", command : "FontName"},
+		{elmt:"clear_style", type:"Value", command : "FontName"},
+		{elmt:"style", type:"Value", command : "FontName"},
+		{elmt:"template", type:"Value", command : "FontName"},
+		{elmt:"show_guide", type:"Toggle", command : "FontName"},
+		{elmt:"object", type:"Value", command : "FontName"},
+		{elmt:"anchor", type:"Value", command : "FontName"},
+		{elmt:"symbol", type:"Value", command : "FontName"}
 	]
 }
 
