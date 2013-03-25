@@ -45,6 +45,8 @@
 
 			this.attach_events();
 			this.body.focus();
+			rangy.init();
+
 
 			return this;
 		},
@@ -53,6 +55,7 @@
 			this.execute = function() {
 				dolpan_editor.fn.customCommand.hasOwnProperty(command) ? dolpan_editor.fn.customCommand[command](): dolpan_editor.fn.content_area.execCommand(command, false, null);
 			};
+
 			this.updateUI = function() {
 				var active = dolpan_editor.fn.content_area.queryCommandState(command);
 				active ? $('#dolpan_toolbar .'+command +' a').addClass("selected"):$('#dolpan_toolbar .'+command +' a').removeClass("selected");
@@ -61,7 +64,7 @@
 
 		execValueCommand: function(command) {
 			this.execute = function(value) {
-				dolpan_editor.fn.customCommand.hasOwnProperty(command) ? dolpan_editor.fn.customCommand[command](): dolpan_editor.fn.content_area.execCommand(command, false, value);
+				dolpan_editor.fn.customCommand.hasOwnProperty(command) ? dolpan_editor.fn.customCommand[command](value): dolpan_editor.fn.content_area.execCommand(command, false, value);
 			};
 			this.updateUI = function() {
 				var active = dolpan_editor.fn.content_area.queryCommandValue(command);
@@ -96,10 +99,19 @@
 			command = new _this.execValueCommand("FontName");
 			_this.commandset.push(command);
 			$("#sltFontSelect").change(function(){
+				command.execute($(this).val());
+				this.unselectable = "on"; // IE, prevent focus
+				_this.body.focus();
+			})
+			/*
+			command = new _this.execValueCommand("FontSize");
+			_this.commandset.push(command);
+			$("#sltFontSize").change(function(){
 				command.execute($(this).val())
 				this.unselectable = "on"; // IE, prevent focus
 				_this.body.focus();
 			})
+*/
 		},
 
 		//속성정보를 받아와서 적용된 스타일이 있을 경우 툴바에서 표시해준다.
@@ -199,6 +211,12 @@
 				if(confirm ("작성된 내용을 삭제됩니다.\n 정말 새로 작성하시겠습니까?"))
 					$(dolpan_editor.fn.editor).contents().find("body").html("<p><br/><p>");
 			}, 
+
+			"FontName" : function(val){
+				console.log(val)
+
+				
+			},
 
 
 			"table" : function(){

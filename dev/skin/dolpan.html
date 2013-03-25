@@ -5,6 +5,8 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<link rel="stylesheet" type="text/css" href="./dolpan.css">
 		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../lib/rangy-core.js"></script>
+		<script type="text/javascript" src="../lib/rangy-cssclassapplier.js"></script>
 		<script type="text/javascript" src="../lib/dolpan_editor.config.js"></script>
 		<script type="text/javascript" src="../lib/dolpan_editor.js"></script>
 		<script type="text/javascript">
@@ -31,8 +33,16 @@
 						<option value="verdana">Verdana</option>						
 					</select>
 				</li>
-				<li class="font_size">
+				<li class="fontsize">
 					<a href="#font_size" title="글꼴크기">FONT SIZE</a>
+					<select name="sltFontSize" id="sltFontSize" class="FontSize">
+						<option value="">default</option>
+						<option value="1">small</option>
+						<option value="3">medium</option>						
+						<option value="5">large</option>						
+						<option value="7">x-large</option>
+												
+					</select>
 				</li>												
 				<li class="bold"><a href="#bold" title="진하게" class="command">BOLD</a></li>
 				<li class="underline"><a href="#underline" title="밑줄" class="command">UNDERLINE</a></li>
