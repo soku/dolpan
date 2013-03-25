@@ -21,6 +21,7 @@
 		html:"#dolpan_htmlsrc",
 		body : null,
 		commandset:[],
+		style:null,
 
 
 		init:function()
@@ -29,6 +30,7 @@
 			var oIframe = document.getElementById("dolpan_frame");
 			var oDoc = oIframe.contentWindow || oIframe.contentDocument;
 			this.body = $(this.editor).contents().find('body');
+			rangy.init();
 
 			if (oDoc.document) {
 			    this.content_area = oDoc.document;
@@ -45,7 +47,8 @@
 
 			this.attach_events();
 			this.body.focus();
-			rangy.init();
+			
+			this.style = rangy.createCssClassApplier(""); 
 
 
 			return this;
@@ -96,22 +99,22 @@
 				_this.commandset.push(command);
 			})
 
-			command = new _this.execValueCommand("FontName");
-			_this.commandset.push(command);
+			
 			$("#sltFontSelect").change(function(){
+				var command = new _this.execValueCommand("FontName");
+				_this.commandset.push(command);
 				command.execute($(this).val());
 				this.unselectable = "on"; // IE, prevent focus
 				_this.body.focus();
 			})
-			/*
-			command = new _this.execValueCommand("FontSize");
-			_this.commandset.push(command);
+			
 			$("#sltFontSize").change(function(){
+				var command = new _this.execValueCommand("FontSize");
+				_this.commandset.push(command);
 				command.execute($(this).val())
 				this.unselectable = "on"; // IE, prevent focus
 				_this.body.focus();
 			})
-*/
 		},
 
 		//속성정보를 받아와서 적용된 스타일이 있을 경우 툴바에서 표시해준다.
@@ -198,7 +201,11 @@
 			this.body.focus();
 		},
 		*/
-		
+
+		getFirstRange :function() {
+			var sel = rangy.getSelection();
+			return sel.rangeCount ? sel.getRangeAt(0) : null;
+		},
 
 		insertHtml:function(html)
 		{
@@ -206,16 +213,34 @@
 		},
 	
 		customCommand: {
-
+			
 			"new" : function(){
 				if(confirm ("작성된 내용을 삭제됩니다.\n 정말 새로 작성하시겠습니까?"))
 					$(dolpan_editor.fn.editor).contents().find("body").html("<p><br/><p>");
 			}, 
 
 			"FontName" : function(val){
-				console.log(val)
+				var sel  = dolpan_editor.fn.getFirstRange();
 
-				
+				//셀렉트된 글자가 있는 지 확인 없을 경우 새로운 span을 추가한다.
+				console.log(this.new)
+;				if(sel.rangeCount > 0)
+				{
+					var w = rangy.dom.getIframeWindow($(dolpan_editor.fn.editor)[0]);
+					dolpan_editor.fn.style.applyToSelectionStyle(w, "font-family", val);
+				}	
+				else
+				{
+					 var el = document.createElement("span");
+					 el.style.cssText = "font-family:"+val;
+					 sel.getRangeAt(0).insertNode(el);
+					 rangy.getSelection().setSingleRange(sel.getRangeAt(0));
+				}
+			},
+
+			"FontSize" : function(val){
+				var w = rangy.dom.getIframeWindow($(dolpan_editor.fn.editor)[0]);
+				dolpan_editor.fn.style.applyToSelectionStyle(w, "font-size", val);
 			},
 
 

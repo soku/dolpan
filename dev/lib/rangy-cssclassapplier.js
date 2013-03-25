@@ -41,12 +41,12 @@ rangy.createModule("CssClassApplier", function(api, module) {
 
     function addStyle(el, style, value)
     {
-        if(el.style) {
+        
+        if(el.style.cssText.length >0) {
             //Regex로 기존 스타일 제거 기능 추가해야함 
-            el.style.cssText = style +":"+value +";";
-
+            el.style.cssText += style +": "+value+";";
         } else {
-            el.style.cssText = style +":"+value +";";
+            el.style.cssText = style +": "+value +";";
         }
 
     }
@@ -353,6 +353,8 @@ rangy.createModule("CssClassApplier", function(api, module) {
     function CssClassApplier(cssClass, options, tagNames) {
         this.cssClass = cssClass;
         var normalize, i, len, propName;
+        var setStyle = false;
+        var style, style_value;
 
         var elementPropertiesFromOptions = null;
 
@@ -513,7 +515,11 @@ rangy.createModule("CssClassApplier", function(api, module) {
         createContainer: function(doc) {
             var el = doc.createElement(this.elementTagName);
             api.util.extend(el, this.elementProperties);
-            addClass(el, this.cssClass);
+
+            if (this.setStyle == true)
+                addStyle(el, this.style, this.style_value)
+            else
+                addClass(el, this.cssClass);
             return el;
         },
 
@@ -522,7 +528,10 @@ rangy.createModule("CssClassApplier", function(api, module) {
 
             var parent = textNode.parentNode;
             if (parent.childNodes.length == 1 && dom.arrayContains(this.tagNames, parent.tagName.toLowerCase())) {
-                addClass(parent, this.cssClass);
+                if(this.setStyle == true)
+                    addStyle(parent, this.style, this.style_value)
+                else
+                    addClass(parent, this.cssClass);
             } else {
                 var el = this.createContainer(dom.getDocument(textNode));
                 textNode.parentNode.insertBefore(el, textNode);
@@ -591,8 +600,28 @@ rangy.createModule("CssClassApplier", function(api, module) {
 
             win = win || window;
             var sel = api.getSelection(win);
-
             var range, ranges = sel.getAllRanges();
+
+            sel.removeAllRanges();
+            var i = ranges.length;
+            while (i--) {
+                range = ranges[i];
+                this.applyToRange(range);
+                sel.addRange(range);
+            }
+
+        },
+
+        applyToSelectionStyle: function(win, style, value) {
+
+            win = win || window;
+            var sel = api.getSelection(win);
+            var range, ranges = sel.getAllRanges();
+
+            this.setStyle = true;
+            this.style = style;
+            this.style_value = value;
+
             sel.removeAllRanges();
             var i = ranges.length;
             while (i--) {
