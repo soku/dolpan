@@ -1,6 +1,6 @@
 {
-	"remove_tags":["script", "param", "marquee", "br"],
-	"remove_tags_without_text" : ["a", "font", "b", "i", "p"],
+	"remove_tags":["script", "param", "marquee", "br", "v", "o", "w"],
+	"remove_tags_without_text" : ["font", "b", "i", "span"],
 	"remove_attrs" : ["style", "onclick", "onload", "align", "bgcolor"],
 	"remove_comment" : true
 }

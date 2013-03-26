@@ -1,15 +1,21 @@
-body {margin:0; padding:0;}
-#dolpan_toolbar {width:100%; height:28px; border:solid 1px #d6d6d6;}
-#dolpan_editor {width:100%; border:solid 1px #d6d6d6;}
+body {margin:0; padding:0; overflow: hidden;}
+#dolpan {}
+#dolpan_toolbar {width:100%; height:28px;  border:solid 1px #d6d6d6;border-bottom:none;}
+#dolpan_editor {width:100%;  border:solid 1px #d6d6d6;}
+#dolpan_htmlsrc {width:100%;   border:none;}
 #dolpan_frame {width:100%;}
 
 #dolpan_toolbar ul {margin:0; padding:0;}
 #dolpan_toolbar li {width:22px; height:22px; margin:0; padding:0; list-style-type: none; float:left; margin:2px;}
 #dolpan_toolbar li a {display: block; width:100%; height:60%; margin: auto; text-decoration: none; text-align: center; padding:20% 0;}
 #dolpan_toolbar li a:hover, #dolpan_toolbar li a.selected {border:solid 1px silver;}
-#dolpan_tab {}
-#dolpan_tab ul {list-style: none; margin:0; padding:0; float:right; margin-right: 10px; margin-top:20px;}
-#dolpan_tab li {list-style: none; margin:0; padding:0; width:40px; float:left; font-size:8pt; text-align: center;}
+#dolpan_tab  {width:100%;}
+#dolpan_tab ul {list-style: none; margin:0; padding:0; float:right;}
+#dolpan_tab li {list-style: none; margin:0; padding:0; width:68px;  float:left; font-size:8pt; text-align: center; border:solid 1px #d6d6d6;border-top:none;}
+#dolpan_tab li.middle {border-left:none; border-right:none;}
+#dolpan_tab li:after {display: block; content:""; clear: both; zoom:*1;}
+#dolpan_tab li a {text-decoration: none; color:silver; display: block; width:100%; height:20px;padding-top:5px;}
+#dolpan_tab li a.selected {color:black; background:url("../lib/img/select_tab.gif") repeat-x bottom center;}
 
 #dolpan_htmlsrc {display: none; width:100%; height:100%;}
 
@@ -18,7 +24,7 @@ body {margin:0; padding:0;}
 #dolpan_toolbar_set1 li.fontselect select {width:70px; overflow: hidden;}
 #dolpan_toolbar_set1 li.fontsize {width:94px;}
 #dolpan_toolbar_set1 li.fontsize select {width:70px; overflow: hidden;}
-#dolpan_toolbar_set1 li a {display: block; width:22px; height:22px; text-indent: -9999px; margin:0; padding:0; float: left; background-image:url(../lib/img/toolbar.gif); border:solid 1px white;}
+#dolpan_toolbar_set1 li a {display: block; width:22px; height:22px; text-indent: -9999px; margin:0; padding:0; float: left; background-image:url(../lib/img/toolbar.gif); 	border:solid 1px white; }
 
 #dolpan_toolbar_set1 .bold a{background-position: 0px 0px;}
 #dolpan_toolbar_set1 .table a {background-position: -22px 0px;}
@@ -40,3 +46,5 @@ body {margin:0; padding:0;}
 #dolpan_toolbar_set1 .underline a{background-position: -374px 0px;}
 #dolpan_toolbar_set1 .anchor a{background-position: -396px 0px;}
 #dolpan_toolbar_set1 .symbol a{background-position: -418px 0px;}
+
+.clear {clear:both;}

@@ -23,14 +23,24 @@
 		commandset:[],
 		style:null,
 
-
 		init:function()
 		{
-			$("body").width($("body").width()-4);
-			var oIframe = document.getElementById("dolpan_frame");
+			$("#dolpan").width($("body").width()-6);
+			$("#dolpan_toolbar").width($("#dolpan_toolbar").width()-2);
+			$("#dolpan_editor").width($("#dolpan_editor").width()-2);
+
+			var toolbar_height = $("#dolpan_toolbar").height();
+			var tab_height = $("#dolpan_tab").height();
+			var editor_height = $(window).height() - toolbar_height - tab_height - 20;
+
+			$(this.editor).height(editor_height);
+
+			var oIframe = $(this.editor)[0];
 			var oDoc = oIframe.contentWindow || oIframe.contentDocument;
 			this.body = $(this.editor).contents().find('body');
 			rangy.init();
+
+			this.style = rangy.createCssClassApplier("");
 
 			if (oDoc.document) {
 			    this.content_area = oDoc.document;
@@ -47,9 +57,6 @@
 
 			this.attach_events();
 			this.body.focus();
-			
-			this.style = rangy.createCssClassApplier(""); 
-
 
 			return this;
 		},
@@ -146,7 +153,8 @@
 			$("#dolpan_tab a").click(function(){
 				var tab = $(this).attr("href");
 				dolpan_editor.fn.show_tab(tab);
-
+				$("#dolpan_tab a.selected").removeClass("selected");
+				$(this).addClass("selected");
 				return false;
 			})
 		},
@@ -166,6 +174,7 @@
 		show_tab:function(tab)
 		{
 			var eHeight = $(this.editor).height();
+			var eWidth = $(this.editor).width();
 
 			if(tab == "#EDIT")
 			{
@@ -188,7 +197,8 @@
 				$(this.html).show();
 				$(this.html).val(this.body.html());
 				$(this.html).attr("readonly", "readonly");
-				$(this.html).height(eHeight);
+				$(this.html).width(eWidth-4);
+				$(this.html).height(eHeight-4);
 			}
 			return true;
 		},
@@ -203,7 +213,7 @@
 		*/
 
 		getFirstRange :function() {
-			var sel = rangy.getSelection();
+			var sel = rangy.getIframeSelection($(dolpan_editor.fn.editor)[0]);
 			return sel.rangeCount ? sel.getRangeAt(0) : null;
 		},
 
@@ -211,6 +221,15 @@
 		{
 			;
 		},
+
+		"put_html" : function(html){
+			this.body.html(html)
+		},
+
+		"get_html" : function(){
+			return this.body.html();
+		},
+
 	
 		customCommand: {
 			
@@ -220,28 +239,33 @@
 			}, 
 
 			"FontName" : function(val){
-				var sel  = dolpan_editor.fn.getFirstRange();
-
-				//셀렉트된 글자가 있는 지 확인 없을 경우 새로운 span을 추가한다.
-				console.log(this.new)
-;				if(sel.rangeCount > 0)
-				{
-					var w = rangy.dom.getIframeWindow($(dolpan_editor.fn.editor)[0]);
-					dolpan_editor.fn.style.applyToSelectionStyle(w, "font-family", val);
-				}	
-				else
-				{
-					 var el = document.createElement("span");
-					 el.style.cssText = "font-family:"+val;
-					 sel.getRangeAt(0).insertNode(el);
-					 rangy.getSelection().setSingleRange(sel.getRangeAt(0));
-				}
+				this._setStyle("font-family", val);				
 			},
 
 			"FontSize" : function(val){
-				var w = rangy.dom.getIframeWindow($(dolpan_editor.fn.editor)[0]);
-				dolpan_editor.fn.style.applyToSelectionStyle(w, "font-size", val);
+				this._setStyle("font-size", val);
 			},
+
+			"_setStyle" : function(style, val)
+			{
+				var sel  = dolpan_editor.fn.getFirstRange();
+				var w = rangy.dom.getIframeWindow($(dolpan_editor.fn.editor)[0]);
+
+				if(!sel.collapsed)
+				{
+					dolpan_editor.fn.style.applyToSelectionStyle(w, style, val);
+				}
+				//셀렉트된 글자가 있는 지 확인 없을 경우 새로운 span을 추가한다.	
+				else
+				{
+					 var el = document.createElement("span");
+					 el.style.cssText = style+":"+val;
+					 el.innerHTML = unescape("%uFEFF");
+					 sel.insertNode(el);
+					 //rangy.getSelection(w).setSingleRange(sel);
+				}
+			},
+
 
 
 			"table" : function(){

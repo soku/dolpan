@@ -2,7 +2,9 @@
 <html>
 	<head>
 		<style type="text/css">
-			#dolpan {width:600px; height:300px;}
+			#dolpan {width:800px; height:300px;}
+			fieldset {width:762px;}
+			textarea {width:100%; margin:auto; margin-top:20px; height:200px;}
 		</style>
 		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
 		<script type="text/javascript" src="../lib/dolpan.js"></script>
@@ -11,7 +13,8 @@
 				var d = new dolpan("dolpan");
 				var htmldom = $("#htmldom")[0];
 
-				var h = ""
+				/*
+				var h = "";
 				$.get("../lib/sl/test.html", function(data){
 					h = data;
 
@@ -19,16 +22,29 @@
 						htmldom.content.stonyparkdom.setOption(json);
 						htmldom.content.stonyparkdom.loadHtml(h);
 						htmldom.content.stonyparkdom.clear();
+					});
 				});
-				
+				*/
 
-				//alert(htmldom.load("<html><head></head></htm>"))	
-				}
+				$("#puthtml").click(function(){
+					d.put_html("../lib/sl/test.html");
+				})
+
+				$("#gethtml").click(function(){
+					$("#resultText").val(d.get_html());
+				})
+
+				$("#cleanup").click(function(){
+					var html = d.cleanup(d.get_html());
+					d.put_htmlText(html);
+				})
+
+			}
 		</script>
 	</head>
 	<body>
 		<div id="dolpan"></div>
-		<object id="htmldom" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100" height="100">
+		<object id="htmldom" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="0" height="0">
 		  <param name="source" value="../lib/sl/htmldom_sl.xap"/>
 		  <param name="onError" value="onSilverlightError" />
 		  <param name="background" value="white" />
@@ -38,5 +54,16 @@
  			  <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
 		  </a>
 	    </object>
+
+	    <fieldset>
+	    	<legend>API TEST</legend>
+
+	    	<input type="button" value="PUT HTML" id="puthtml" />
+	    	<input type="button" value="GET HTML" id="gethtml"/>
+	    	<input type="button" value="CLEANUP HTML" id="cleanup" />
+
+	    	<br/>
+	    	<textarea name="result" id="resultText"></textarea>
+	    </fieldset>
 	</body>
 </html>

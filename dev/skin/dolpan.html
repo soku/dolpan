@@ -10,14 +10,19 @@
 		<script type="text/javascript" src="../lib/dolpan_editor.config.js"></script>
 		<script type="text/javascript" src="../lib/dolpan_editor.js"></script>
 		<script type="text/javascript">
-			var de;
-			window.onload = function(){
-				de = new dolpan_editor();	
+			function createEditor()
+			{
+				var de = new dolpan_editor();
+
+				return de;
 			}
+
+			
 			
 		</script>
 	</head>
 	<body>
+		<div id="dolpan">
 		<div id="dolpan_toolbar">
 			<ul class="dolpan_toolbar" id="dolpan_toolbar_set1">
 				<li class="new"><a href="#new" class="command" event="custom" title="새페이지">NEW PAGE</a></li>												
@@ -70,12 +75,13 @@
 			<textarea id="dolpan_htmlsrc"></textarea>		
 		</div>
 		<div id="dolpan_tab">
-
 			<ul>
-				<li><a href="#EDIT">EDIT</a></li>
-				<li><a href="#HTML" class="show_html">HTML</a></li>
+				<li><a href="#EDIT" class="selected">EDIT</a></li>
+				<li class="middle"><a href="#HTML" class="show_html">HTML</a></li>
 				<li><a href="#PREVIEW">PREVIEW</a></li>
 			</ul>
+			<div class="clear"></div>
 		</div>
+	</div>
 	</body>
 </html>
