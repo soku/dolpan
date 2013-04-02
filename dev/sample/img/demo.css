@@ -1,0 +1,7 @@
+.smtech {border-collapse: collapse; border-top:#96b9dc solid 2px; width:100%; margin:10px 0;}
+.smtech th, .smtech td {font-size:9pt;}
+.smtech th {width:100px; background-color: #f4f6fa; padding:5px; border-right:#dddddd solid 1px; border-bottom:#dddddd solid 1px;}
+.smtech td { padding:5px; border-right:#dddddd solid 1px; border-bottom:#dddddd solid 1px;}
+
+.smtech #resultTD table {border-collapse: collapse; border:solid 1px #d6d6d6;}
+.smtech #resultTD th, td { border:solid 1px #d6d6d6;}

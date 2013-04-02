@@ -1,8 +1,8 @@
 {
 	"remove_tags":["script", "param", "marquee", "br", "link", "style"],
-	"remove_tags_without_text" : ["a", "font", "b", "i", "span"],
+	"remove_tags_without_text" : ["font", "b", "i"],
 	"remove_attrs" : ["onclick", "onload", "align", "bgcolor", "border", "cellspacing", "cellpadding", "style"],
 	"remove_comment" : true,
 	"remove_word_tag" : true,
-	"remove_style_without_element" : ["text-align", "font-size"]
+	"remove_style_without_element" : ["text-align", "font-size", "border"]
 }

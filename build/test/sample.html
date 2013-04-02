@@ -3,32 +3,46 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<style type="text/css">
-			body {margin:0;padding:0;}
+			body {margin:0;padding:0; background-image:url(./absurdidad.png);}
 
 
 			.bg_yellow {background-color:#FFF56D;}
-			.bg_blue {background-color:#86E2FF;}
+			.bg_blue {background-color:#D3F5FF;}
 			.bg_green {background-color:#B2AA3A; }
 			.bg_red {background-color:#B24362;}
 
 			.blue {color:#86E2FF;}
 			.yellow {color:#FFF56D;}
-			.red {color:#B24362;}
+			/*.red {color:#B24362;}*/
+			.red {color:#43717F;}
 			.red2 {color:#CC4367;}
 			.green {color:#B2AA3A;}
 
-			#box1 {width:760px;  margin:auto; margin-top:100px; border-radius:20px; padding:20px;}
-			#header{width:100%; padding:10px; font-weight: 600; font-family: "lucida sans"} 
+			#box1 {width:760px; margin:50px auto;  padding:20px; border:solid 3px #E8D058; }
+			#header{width:100%; padding:10px; font-size:10pt;  } 
 
-			p {color:#B2AA3A;}
+			.h1 {position: relative; height:50px; margin-bottom:30px;}
+
+			h1 {position: absolute; left:-50px; background-color:#B24362; margin:0; padding:10px 20px; color:white; width:300px; font-family: "times new roman"; font-weight: normal; border-left: solid 5px #7F3046}
+
+			p {color:#666; font-size:10pt; }
+
+			#footer {width:100%; height:20px; position: absolute; bottom:0;}
+			#footer div {width:33%; float:left; height:100%; padding-top:40px; text-align: center; font-size:10pt;}
+			#footer div.box1 {background-color: #43717F;}
+			#footer div.box2 {background-color: #65AABF; width:34%;}
+			#footer div.box3 {background-color: #87E3FF;}
 		</style>
 	</head>
-	<body class="bg_green" >
+	<body >
 		<div id="header" class="bg_blue red">
 			STONYPARK
 		</div>
 		<div id="box1" class="bg_yellow">
-			<h1 class="red">Hello, World</h1>
+			<div class="h1">
+				<h1 >Hello, World</h1>
+			</div>
+
 			<p>Lorem ipsum dolor sit amet, vix affert volutpat scripserit et, dicant viderer efficiantur mei cu. Eam an natum magna. Esse nihil labores ad vis, commodo persequeris at mea, mollis tincidunt ne his. Doctus civibus definitiones eos at, vel ea feugait epicuri, ad ipsum eleifend per. An possim volutpat nec. Unum dolorum principes at mea, congue lobortis elaboraret eum te.
 			  </p>
 			  <p>
@@ -58,6 +72,17 @@
 			  <p>
 			Feugiat eleifend duo cu, his ne fastidii dignissim. Te quot efficiantur definitionem ius. Ut percipit electram ius, eam ad sint purto principes. Mel reque deserunt ut, nam ei quod illum intellegebat. Ex tale omnesque vix.
 			</p>
+		</div>
+
+		<div id="footer">
+			<div class="box1">
+				&copy;STONYPARK.COM
+			</div>
+			<div class="box2">
+				since @2011
+			</div>
+			<div class="box3">
+			</div>
 		</div>
 	</body>
 </html>

@@ -1,10 +1,14 @@
 (function(window) {
-	var width = 800;
-	var height = 400;
+	var width = 900;
+	var height = 600;
 
-	var dolpan = function(elmt)
+	var dolpan = function(elmt, nwidth, nheight)
 	{
+		width = nwidth ? nwidth : width;
+		height = nheight ? nheight : height;
+
 		var obj =  dolpan.fn.init(width, height, elmt);
+
 
 		obj.create_editor();
 
@@ -20,7 +24,7 @@
 		content_width:0,
 		content_height:0,
 		editor:null,
-		cleanup_config:null,
+		onInitload : null,
 
 
 		init:function(width, height, elmt)
@@ -37,12 +41,7 @@
 			this.content_width = width;
 			this.content_height = height;
 
-
-			$.get("../lib/sl/config.json?id"+Math.random(), function(data){
-				dolpan.fn.cleanup_config = data
-			}, "html");
 			
-
 			return this;
 		},
 
@@ -57,6 +56,15 @@
 			$("#"+id).bind("load", function(){
 				var e = $("#"+id)[0].contentWindow.createEditor ||  $("#"+id)[0].contentWindow[createEditor] ;
 				_this.editor = e();
+
+				if(_this.onInitload != null)
+				{
+					if(typeof(_this.onInitload) == "function")
+						_this.onInitload();
+					else
+						window[_this.onInitload]();
+				}
+
 			});
 
 
@@ -78,20 +86,9 @@
 		get_html:function()
 		{
 			return this.editor.get_html();
-		},
-
-		cleanup:function(html)
-		{
-			var htmldom = $("#htmldom")[0];
-
-			if(!htmldom) return false;
-
-			htmldom.content.stonyparkdom.setOption(this.cleanup_config);
-			htmldom.content.stonyparkdom.loadHtml(html);
-			htmldom.content.stonyparkdom.clear();
-
-			return htmldom.content.stonyparkdom.getHtml(false);
 		}
+
+		
 		
 	}
 
