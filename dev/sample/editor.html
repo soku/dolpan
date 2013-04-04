@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			body {background-image:url(./img/inflicted.png);}
+			h1 {font-family: tahoma, verdana; font-size:18pt; background-color: white; padding:5px 20px; width:600px;}
+			
+			h2 {font-family: "malgun gothic", "dotumche"; font-size:12pt;}
+
+			#original_frame {width:100%; height:600px; border:solid 1px #d6d6d6;}
+			#result {margin-right: 0px;}
+
+			.page {width:900px; background-color:white;}
+			#result .board {border-collapse: collapse; border-top:#96b9dc solid 2px; width:100%;}
+			#result .board * {font-size:9pt;}
+			#result .board th {width:100px; background-color: #f4f6fa; padding:5px; border-right:#dddddd solid 1px; border-bottom:#dddddd solid 1px;}
+			#result .board td { padding:5px; border-right:#dddddd solid 1px; border-bottom:#dddddd solid 1px;}
+
+			#resultTD table {border-collapse: collapse; border:solid 1px #d6d6d6;}
+			#resultTD th, td { border:solid 1px #d6d6d6;}
+
+			#dolpan {width:800px; height:300px;}
+			fieldset {width:762px;}
+			textarea {width:100%; margin:auto; margin-top:20px; height:200px;}
+
+
+
+
+		</style>
+		<script type="text/javascript" src="../lib/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="../lib/dolpan.js"></script>
+		<script type="text/javascript">
+			window.onload = function(){
+				var d = new dolpan("dolpan");
+				var htmldom = $("#htmldom")[0];
+
+				
+
+				/*
+				var h = "";
+				$.get("../lib/sl/test.html", function(data){
+					h = data;
+
+					$.get("../lib/sl/config.json", function(json){
+						htmldom.content.stonyparkdom.setOption(json);
+						htmldom.content.stonyparkdom.loadHtml(h);
+						htmldom.content.stonyparkdom.clear();
+					});
+				});
+				*/
+
+				$("#puthtml").click(function(){
+					d.put_html("../lib/sl/test.html");
+				})
+
+				
+
+				$("#cleanup").click(function(){
+					var html = d.cleanup(d.get_html());
+					d.put_htmlText(html);
+					$("#resultTD").html(html);
+				})
+
+			}
+		</script>
+	</head>
+	<body>
+		<h1>STONYPARK CLEANUP HTML DEMO</h1>
+		
+		<div id="editor" class="page">
+			<h2>HTML 클린업 에디터</h2>
+			<div id="dolpan"></div>
+			<object id="htmldom" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="0" height="0">
+			  <param name="source" value="../lib/sl/htmldom_sl.xap"/>
+			  <param name="onError" value="onSilverlightError" />
+			  <param name="background" value="white" />
+			  <param name="minRuntimeVersion" value="5.0.61118.0" />
+			  <param name="autoUpgrade" value="true" />
+			  <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=5.0.61118.0" style="text-decoration:none">
+	 			  <img src="http://go.microsoft.com/fwlink/?LinkId=161376" alt="Get Microsoft Silverlight" style="border-style:none"/>
+			  </a>
+		    </object>
+	    	<p><input type="button" value="CLEANUP HTML >>" id="cleanup" /></p>
+
+		</div>
+
+		
+	</body>
+</html>

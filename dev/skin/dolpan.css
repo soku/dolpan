@@ -30,8 +30,8 @@ body {margin:0; padding:0; overflow: hidden;}
 #dolpan_toolbar_set1 .table a {background-position: -22px 0px;}
 #dolpan_toolbar_set1 .font a{background-position: -44px 0px;}
 #dolpan_toolbar_set1 .image a{background-position: -66px 0px;}
-#dolpan_toolbar_set1 .sub a{background-position: -88px 0px;}
-#dolpan_toolbar_set1 .super a{background-position: -110px 0px;}
+#dolpan_toolbar_set1 .subscript a{background-position: -88px 0px;}
+#dolpan_toolbar_set1 .superscript a{background-position: -110px 0px;}
 #dolpan_toolbar_set1 .italic a{background-position: -132px 0px;}
 #dolpan_toolbar_set1 .insertunorderedlist a{background-position: -154px 0px;}
 #dolpan_toolbar_set1 .strikethrough a{background-position: -176px 0px;}

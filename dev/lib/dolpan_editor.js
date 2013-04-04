@@ -79,9 +79,21 @@
 			this.updateUI = function() {
 				var active = dolpan_editor.fn.content_area.queryCommandValue(command);
 				 $('#dolpan_toolbar .'+command).val(active);
-				//active ? $('#dolpan_toolbar .'+command +' a').addClass("selected"):$('#dolpan_toolbar .'+command +' a').removeClass("selected");
 			};
 		},
+
+		execFontSizeCommand: function() {
+			this.execute = function(value) {
+				dolpan_editor.fn.customCommand["FontSize"](value)
+			};
+			this.updateUI = function() {
+				var sel = dolpan_editor.fn.getFirstRange();
+				var active = sel.startContainer.parentNode.style["font-size"];
+				 $('#dolpan_toolbar .FontSize').val(active);
+			};
+
+		},
+
 		create_toolbar:function()
 		{
 			var _this = this;
@@ -104,7 +116,7 @@
 				});
 
 				_this.commandset.push(command);
-			})
+			});
 
 			
 			$("#sltFontSelect").change(function(){
@@ -113,15 +125,15 @@
 				command.execute($(this).val());
 				this.unselectable = "on"; // IE, prevent focus
 				_this.body.focus();
-			})
+			});
 			
 			$("#sltFontSize").change(function(){
-				var command = new _this.execValueCommand("FontSize");
+				var command = new _this.execFontSizeCommand();
 				_this.commandset.push(command);
 				command.execute($(this).val())
 				this.unselectable = "on"; // IE, prevent focus
 				_this.body.focus();
-			})
+			});
 		},
 
 		//속성정보를 받아와서 적용된 스타일이 있을 경우 툴바에서 표시해준다.
@@ -145,6 +157,18 @@
 
 			this.body.bind('focus',function(){
 				dolpan_editor.fn.update_toolbar();
+			});
+
+			this.body.bind("keydown", function(e) {
+				//keyCode map
+				//enter : 13
+				//arrow : 37-40
+
+				if(e.keyCode == 13 || (e.keyCode > 36 && e.keyCode < 41))
+					dolpan_editor.fn.update_toolbar();
+				
+				return;
+
 			});
 		},
 
